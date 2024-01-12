@@ -5,14 +5,18 @@ import UserTyping from "./components/UserTyping";
 import useEngine from "./hooks/useEngine";
 
 function App() {
-  const { state, words } = useEngine();
+  const { state, words, timeLeft, typed } = useEngine();
 
   return (
     <>
-      <CountDownTimer timeLeft={30} />
+      <CountDownTimer timeLeft={timeLeft} />
       <WordsContainer>
         <GeneratedWords words={words} />
-        <UserTyping className="absolute inset-0" userInput={"hello"} />
+        <UserTyping
+          className="absolute inset-0"
+          userInput={typed}
+          words={words}
+        />
       </WordsContainer>
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"}
